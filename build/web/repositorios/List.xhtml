@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRepositoriosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRepositoriosEmpty}" rendered="#{repositoriosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{repositoriosController.items.rowCount > 0}">
+                    <h:outputText value="#{repositoriosController.pagination.pageFirstItem + 1}..#{repositoriosController.pagination.pageLastItem + 1}/#{repositoriosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{repositoriosController.previous}" value="#{bundle.Previous} #{repositoriosController.pagination.pageSize}" rendered="#{repositoriosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{repositoriosController.next}" value="#{bundle.Next} #{repositoriosController.pagination.pageSize}" rendered="#{repositoriosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{repositoriosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_aprobado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aprobado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_url}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.url}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_categoriaId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoriaId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepositoriosTitle_usuarioId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{repositoriosController.prepareView}" value="#{bundle.ListRepositoriosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{repositoriosController.prepareEdit}" value="#{bundle.ListRepositoriosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{repositoriosController.destroy}" value="#{bundle.ListRepositoriosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{repositoriosController.prepareCreate}" value="#{bundle.ListRepositoriosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRepositoriosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

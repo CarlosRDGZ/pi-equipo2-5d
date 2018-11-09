@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewComentariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewComentariosLabel_id}"/>
+                    <h:outputText value="#{comentariosController.selected.id}" title="#{bundle.ViewComentariosTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_contenido}"/>
+                    <h:outputText value="#{comentariosController.selected.contenido}" title="#{bundle.ViewComentariosTitle_contenido}"/>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_fechaEdicion}"/>
+                    <h:outputText value="#{comentariosController.selected.fechaEdicion}" title="#{bundle.ViewComentariosTitle_fechaEdicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_reportado}"/>
+                    <h:outputText value="#{comentariosController.selected.reportado}" title="#{bundle.ViewComentariosTitle_reportado}"/>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_visible}"/>
+                    <h:outputText value="#{comentariosController.selected.visible}" title="#{bundle.ViewComentariosTitle_visible}"/>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_recursoId}"/>
+                    <h:outputText value="#{comentariosController.selected.recursoId}" title="#{bundle.ViewComentariosTitle_recursoId}"/>
+                    <h:outputText value="#{bundle.ViewComentariosLabel_usuarioId}"/>
+                    <h:outputText value="#{comentariosController.selected.usuarioId}" title="#{bundle.ViewComentariosTitle_usuarioId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{comentariosController.destroyAndView}" value="#{bundle.ViewComentariosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewComentariosEditLink}"/>
+                <br />
+                <h:commandLink action="#{comentariosController.prepareCreate}" value="#{bundle.ViewComentariosCreateLink}" />
+                <br />
+                <h:commandLink action="#{comentariosController.prepareList}" value="#{bundle.ViewComentariosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewComentariosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

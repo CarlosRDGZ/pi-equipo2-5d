@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRepositoriosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_id}"/>
+                    <h:outputText value="#{repositoriosController.selected.id}" title="#{bundle.ViewRepositoriosTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_nombre}"/>
+                    <h:outputText value="#{repositoriosController.selected.nombre}" title="#{bundle.ViewRepositoriosTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_descripcion}"/>
+                    <h:outputText value="#{repositoriosController.selected.descripcion}" title="#{bundle.ViewRepositoriosTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_aprobado}"/>
+                    <h:outputText value="#{repositoriosController.selected.aprobado}" title="#{bundle.ViewRepositoriosTitle_aprobado}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_url}"/>
+                    <h:outputText value="#{repositoriosController.selected.url}" title="#{bundle.ViewRepositoriosTitle_url}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_categoriaId}"/>
+                    <h:outputText value="#{repositoriosController.selected.categoriaId}" title="#{bundle.ViewRepositoriosTitle_categoriaId}"/>
+                    <h:outputText value="#{bundle.ViewRepositoriosLabel_usuarioId}"/>
+                    <h:outputText value="#{repositoriosController.selected.usuarioId}" title="#{bundle.ViewRepositoriosTitle_usuarioId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{repositoriosController.destroyAndView}" value="#{bundle.ViewRepositoriosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRepositoriosEditLink}"/>
+                <br />
+                <h:commandLink action="#{repositoriosController.prepareCreate}" value="#{bundle.ViewRepositoriosCreateLink}" />
+                <br />
+                <h:commandLink action="#{repositoriosController.prepareList}" value="#{bundle.ViewRepositoriosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRepositoriosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

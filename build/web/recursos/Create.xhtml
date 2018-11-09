@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRecursosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{recursosController.selected.id}" title="#{bundle.CreateRecursosTitle_id}" required="true" requiredMessage="#{bundle.CreateRecursosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{recursosController.selected.titulo}" title="#{bundle.CreateRecursosTitle_titulo}" required="true" requiredMessage="#{bundle.CreateRecursosRequiredMessage_titulo}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_fechaEdicion}" for="fechaEdicion" />
+                    <h:inputText id="fechaEdicion" value="#{recursosController.selected.fechaEdicion}" title="#{bundle.CreateRecursosTitle_fechaEdicion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_noEdicion}" for="noEdicion" />
+                    <h:inputText id="noEdicion" value="#{recursosController.selected.noEdicion}" title="#{bundle.CreateRecursosTitle_noEdicion}" />
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_tags}" for="tags" />
+                    <h:inputText id="tags" value="#{recursosController.selected.tags}" title="#{bundle.CreateRecursosTitle_tags}" />
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{recursosController.selected.url}" title="#{bundle.CreateRecursosTitle_url}" required="true" requiredMessage="#{bundle.CreateRecursosRequiredMessage_url}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_autor}" for="autor" />
+                    <h:inputText id="autor" value="#{recursosController.selected.autor}" title="#{bundle.CreateRecursosTitle_autor}" />
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{recursosController.selected.descripcion}" title="#{bundle.CreateRecursosTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateRecursosLabel_repositorioId}" for="repositorioId" />
+                    <h:selectOneMenu id="repositorioId" value="#{recursosController.selected.repositorioId}" title="#{bundle.CreateRecursosTitle_repositorioId}" required="true" requiredMessage="#{bundle.CreateRecursosRequiredMessage_repositorioId}">
+                        <f:selectItems value="#{repositoriosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{recursosController.create}" value="#{bundle.CreateRecursosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{recursosController.prepareList}" value="#{bundle.CreateRecursosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRecursosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

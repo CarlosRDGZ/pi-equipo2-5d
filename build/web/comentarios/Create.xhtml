@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateComentariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{comentariosController.selected.id}" title="#{bundle.CreateComentariosTitle_id}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_contenido}" for="contenido" />
+                    <h:inputText id="contenido" value="#{comentariosController.selected.contenido}" title="#{bundle.CreateComentariosTitle_contenido}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_contenido}"/>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_fechaEdicion}" for="fechaEdicion" />
+                    <h:inputText id="fechaEdicion" value="#{comentariosController.selected.fechaEdicion}" title="#{bundle.CreateComentariosTitle_fechaEdicion}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_fechaEdicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_reportado}" for="reportado" />
+                    <h:inputText id="reportado" value="#{comentariosController.selected.reportado}" title="#{bundle.CreateComentariosTitle_reportado}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_reportado}"/>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_visible}" for="visible" />
+                    <h:inputText id="visible" value="#{comentariosController.selected.visible}" title="#{bundle.CreateComentariosTitle_visible}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_visible}"/>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_recursoId}" for="recursoId" />
+                    <h:selectOneMenu id="recursoId" value="#{comentariosController.selected.recursoId}" title="#{bundle.CreateComentariosTitle_recursoId}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_recursoId}">
+                        <f:selectItems value="#{recursosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateComentariosLabel_usuarioId}" for="usuarioId" />
+                    <h:selectOneMenu id="usuarioId" value="#{comentariosController.selected.usuarioId}" title="#{bundle.CreateComentariosTitle_usuarioId}" required="true" requiredMessage="#{bundle.CreateComentariosRequiredMessage_usuarioId}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{comentariosController.create}" value="#{bundle.CreateComentariosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{comentariosController.prepareList}" value="#{bundle.CreateComentariosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateComentariosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

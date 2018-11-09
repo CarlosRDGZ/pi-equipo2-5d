@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRankingRecursoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRankingRecursoLabel_ranking}" for="ranking" />
+                    <h:inputText id="ranking" value="#{rankingRecursoController.selected.ranking}" title="#{bundle.CreateRankingRecursoTitle_ranking}" required="true" requiredMessage="#{bundle.CreateRankingRecursoRequiredMessage_ranking}"/>
+                    <h:outputLabel value="#{bundle.CreateRankingRecursoLabel_recursos}" for="recursos" />
+                    <h:selectOneMenu id="recursos" value="#{rankingRecursoController.selected.recursos}" title="#{bundle.CreateRankingRecursoTitle_recursos}" required="true" requiredMessage="#{bundle.CreateRankingRecursoRequiredMessage_recursos}">
+                        <f:selectItems value="#{recursosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateRankingRecursoLabel_usuarios}" for="usuarios" />
+                    <h:selectOneMenu id="usuarios" value="#{rankingRecursoController.selected.usuarios}" title="#{bundle.CreateRankingRecursoTitle_usuarios}" required="true" requiredMessage="#{bundle.CreateRankingRecursoRequiredMessage_usuarios}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rankingRecursoController.create}" value="#{bundle.CreateRankingRecursoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rankingRecursoController.prepareList}" value="#{bundle.CreateRankingRecursoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRankingRecursoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
