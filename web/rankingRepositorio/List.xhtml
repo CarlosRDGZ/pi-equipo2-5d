@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRankingRepositorioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRankingRepositorioEmpty}" rendered="#{rankingRepositorioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{rankingRepositorioController.items.rowCount > 0}">
+                    <h:outputText value="#{rankingRepositorioController.pagination.pageFirstItem + 1}..#{rankingRepositorioController.pagination.pageLastItem + 1}/#{rankingRepositorioController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{rankingRepositorioController.previous}" value="#{bundle.Previous} #{rankingRepositorioController.pagination.pageSize}" rendered="#{rankingRepositorioController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rankingRepositorioController.next}" value="#{bundle.Next} #{rankingRepositorioController.pagination.pageSize}" rendered="#{rankingRepositorioController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{rankingRepositorioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRankingRepositorioTitle_ranking}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ranking}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRankingRepositorioTitle_repositorios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repositorios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRankingRepositorioTitle_usuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{rankingRepositorioController.prepareView}" value="#{bundle.ListRankingRepositorioViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rankingRepositorioController.prepareEdit}" value="#{bundle.ListRankingRepositorioEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rankingRepositorioController.destroy}" value="#{bundle.ListRankingRepositorioDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{rankingRepositorioController.prepareCreate}" value="#{bundle.ListRankingRepositorioCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRankingRepositorioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

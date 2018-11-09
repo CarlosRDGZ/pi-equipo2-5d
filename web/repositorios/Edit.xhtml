@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRepositoriosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{repositoriosController.selected.id}" title="#{bundle.EditRepositoriosTitle_id}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{repositoriosController.selected.nombre}" title="#{bundle.EditRepositoriosTitle_nombre}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{repositoriosController.selected.descripcion}" title="#{bundle.EditRepositoriosTitle_descripcion}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_aprobado}" for="aprobado" />
+                    <h:inputText id="aprobado" value="#{repositoriosController.selected.aprobado}" title="#{bundle.EditRepositoriosTitle_aprobado}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_aprobado}"/>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{repositoriosController.selected.url}" title="#{bundle.EditRepositoriosTitle_url}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_url}"/>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_categoriaId}" for="categoriaId" />
+                    <h:selectOneMenu id="categoriaId" value="#{repositoriosController.selected.categoriaId}" title="#{bundle.EditRepositoriosTitle_categoriaId}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_categoriaId}">
+                        <f:selectItems value="#{categoriasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRepositoriosLabel_usuarioId}" for="usuarioId" />
+                    <h:selectOneMenu id="usuarioId" value="#{repositoriosController.selected.usuarioId}" title="#{bundle.EditRepositoriosTitle_usuarioId}" required="true" requiredMessage="#{bundle.EditRepositoriosRequiredMessage_usuarioId}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{repositoriosController.update}" value="#{bundle.EditRepositoriosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRepositoriosViewLink}"/>
+                <br />
+                <h:commandLink action="#{repositoriosController.prepareList}" value="#{bundle.EditRepositoriosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRepositoriosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

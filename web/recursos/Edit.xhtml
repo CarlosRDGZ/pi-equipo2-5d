@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRecursosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{recursosController.selected.id}" title="#{bundle.EditRecursosTitle_id}" required="true" requiredMessage="#{bundle.EditRecursosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{recursosController.selected.titulo}" title="#{bundle.EditRecursosTitle_titulo}" required="true" requiredMessage="#{bundle.EditRecursosRequiredMessage_titulo}"/>
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_fechaEdicion}" for="fechaEdicion" />
+                    <h:inputText id="fechaEdicion" value="#{recursosController.selected.fechaEdicion}" title="#{bundle.EditRecursosTitle_fechaEdicion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_noEdicion}" for="noEdicion" />
+                    <h:inputText id="noEdicion" value="#{recursosController.selected.noEdicion}" title="#{bundle.EditRecursosTitle_noEdicion}" />
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_tags}" for="tags" />
+                    <h:inputText id="tags" value="#{recursosController.selected.tags}" title="#{bundle.EditRecursosTitle_tags}" />
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{recursosController.selected.url}" title="#{bundle.EditRecursosTitle_url}" required="true" requiredMessage="#{bundle.EditRecursosRequiredMessage_url}"/>
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_autor}" for="autor" />
+                    <h:inputText id="autor" value="#{recursosController.selected.autor}" title="#{bundle.EditRecursosTitle_autor}" />
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{recursosController.selected.descripcion}" title="#{bundle.EditRecursosTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditRecursosLabel_repositorioId}" for="repositorioId" />
+                    <h:selectOneMenu id="repositorioId" value="#{recursosController.selected.repositorioId}" title="#{bundle.EditRecursosTitle_repositorioId}" required="true" requiredMessage="#{bundle.EditRecursosRequiredMessage_repositorioId}">
+                        <f:selectItems value="#{repositoriosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{recursosController.update}" value="#{bundle.EditRecursosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRecursosViewLink}"/>
+                <br />
+                <h:commandLink action="#{recursosController.prepareList}" value="#{bundle.EditRecursosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRecursosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
